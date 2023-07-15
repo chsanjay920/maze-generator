@@ -30,8 +30,8 @@
   display: flex;
   flex-wrap: wrap;
   padding: 1rem;
-  width: 25rem;
-  height: 24.5rem;
+  width: 26rem;
+  height: auto;
   border-width: 2rem;
   border-style: solid;
   border-image: linear-gradient(to right, darkblue, darkorchid) 1;
