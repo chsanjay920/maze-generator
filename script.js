@@ -56,6 +56,7 @@ function createGrid() {
     for (var i = 0; i < row; i++) {
         for (var j = 0; j < col; j++) {
             const para = document.createElement("div");
+            // para.innerHTML = i;
             para.className = "cell";
             para.id = `${i}-${j}`;
             box.appendChild(para);
