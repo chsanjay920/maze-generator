@@ -11,20 +11,19 @@
   margin-bottom: 1rem;
   text-transform: uppercase;
 }
-.button
-{
-    cursor: pointer;
-    width: auto;
-    border: 4px solid beige;
-    padding: 10px 50px; 
-    margin-top: 1rem;
-    background-color: darkblue;
-    text-transform: capitalize;
-    color: rgb(215, 163, 240);
-    border-radius: 1em;
+.button {
+  cursor: pointer;
+  width: auto;
+  border: 4px solid beige;
+  padding: 10px 50px;
+  margin-top: 1rem;
+  background-color: darkblue;
+  text-transform: capitalize;
+  color: rgb(215, 163, 240);
+  border-radius: 1em;
 }
-.button:active{
-    background-color: darkorchid;
+.button:active {
+  background-color: darkorchid;
 }
 .box {
   display: flex;
