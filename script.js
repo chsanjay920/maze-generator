@@ -31,7 +31,6 @@ function GenerateMaze() {
 
         if (nonvisitedNBCell === -1) {
             maze_stack.pop();
-            console.log("poped");
             cell = maze_stack[maze_stack.length - 1];
             nonvisitedNBCell = RandomNonVisitedNeighbour(cell)
         }
@@ -50,6 +49,7 @@ function GenerateMaze() {
             cell = selectednonvisitedcell;
         }
     }
+    
 }
 
 function createGrid() {
@@ -69,8 +69,8 @@ function createGrid() {
             )
         }
     }
-    document.getElementById("0-0").innerHTML = "&#x2655;"
-    document.getElementById("19-19").innerHTML = "&#x2654;"
+    document.getElementById("0-0").style.background = "darkorchid"
+    document.getElementById("19-19").style.background = "darkorchid"
 }
 
 
