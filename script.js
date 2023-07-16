@@ -2,81 +2,74 @@ var box = document.getElementById("box");
 var row = 20, col = 20;
 var start = { x: 0, y: 0 }
 
-
-
-//step-1 
-var maze = []
+// Step 1: Create grid and initialize maze
+var maze = [];
 createGrid();
 // ------------
+
+// Step 2: Generate Maze
 GenerateMaze();
 //----------
 
-
-function GenerateMaze() {
-    //step-2: starting point
+async function GenerateMaze() {
+    // Step 3: Set starting point as visited
     staringCell = maze[maze.findIndex(e => e.x == start.x && e.y == start.y)]
     maze[maze.findIndex(e => e.x == staringCell.x && e.y == staringCell.y)].status = "visited";
 
-    //step-3
+    // Step 4: Initialize maze stack
     var maze_stack = [];
-
 
     var cell = maze[maze.findIndex(e => e.x === staringCell.x && e.y === staringCell.y)]
     maze_stack.push(cell);
 
     while (maze_stack.length > 0) {
-
         let nonvisitedNBCell = RandomNonVisitedNeighbour(cell);
-
 
         if (nonvisitedNBCell === -1) {
             maze_stack.pop();
             cell = maze_stack[maze_stack.length - 1];
             nonvisitedNBCell = RandomNonVisitedNeighbour(cell)
-        }
-        else {
-            //pushing element to stack
+        } else {
+            // Pushing element to stack
             maze_stack.push(cell);
-            //removing walls of neighbour cells
+
+            // Removing walls of neighbor cells with delay
             removeWallsof(`${cell.x}-${cell.y}`, `${nonvisitedNBCell.x}-${nonvisitedNBCell.y}`, nonvisitedNBCell.position);
 
-
             const selectednonvisitedcell = maze[maze.findIndex(e => e.x == nonvisitedNBCell.x && e.y == nonvisitedNBCell.y)];
-            //setting choosed neighbour cell as visited
+            // Setting chosen neighbor cell as visited
             selectednonvisitedcell.status = "visited";
 
-            //update the current cell to choosen cell
+            // Update the current cell to chosen cell
             cell = selectednonvisitedcell;
         }
+
+        // Delay between each step
+        await delay(1); // Delay of 100 milliseconds
     }
-    
 }
 
 function createGrid() {
     for (var i = 0; i < row; i++) {
         for (var j = 0; j < col; j++) {
             const para = document.createElement("div");
-            // para.innerHTML = i;
             para.className = "cell";
             para.id = `${i}-${j}`;
             box.appendChild(para);
-            maze.push(
-                {
-                    x: i,
-                    y: j,
-                    status: "unvisited"
-                }
-            )
+            maze.push({
+                x: i,
+                y: j,
+                status: "unvisited"
+            });
         }
     }
-    document.getElementById("0-0").style.background = "darkorchid"
-    document.getElementById("19-19").style.background = "darkorchid"
+    document.getElementById("0-0").style.background = "rgb(229, 177, 255)"
+    document.getElementById("19-19").style.background = "rgb(229, 177, 255)"
 }
 
-
 function RandomNonVisitedNeighbour(cell) {
-    //finding unvisited neighbour cells
-    //top, botton, left and right
+    // Finding unvisited neighbor cells
+    // Top, bottom, left and right
     let topEle = maze[maze.findIndex(e => e.x == cell.x - 1 && e.y == cell.y)];
     let bottomEle = maze[maze.findIndex(e => e.x == cell.x + 1 && e.y == cell.y)];
     let leftEle = maze[maze.findIndex(e => e.x == cell.x && e.y == cell.y - 1)];
@@ -101,21 +94,21 @@ function removeWallsof(cell, neighbour, position) {
     if (position == "top") {
         cell1.style.borderTop = "3px solid white";
         cell2.style.borderBottom = "3px solid white";
-    }
-    else if (position == "bottom") {
+    } else if (position == "bottom") {
         cell1.style.borderBottom = "3px solid white";
         cell2.style.borderTop = "3px solid white";
-    }
-    else if (position == "left") {
+    } else if (position == "left") {
         cell1.style.borderLeft = "3px solid white";
         cell2.style.borderRight = "3px solid white";
-    }
-    else if (position == "right") {
+    } else if (position == "right") {
         cell1.style.borderRight = "3px solid white";
         cell2.style.borderLeft = "3px solid white";
     }
 }
 
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 
 
