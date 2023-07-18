@@ -55,7 +55,7 @@ async function GenerateMaze() {
         }
 
         // Delay between each step
-        // await delay(0);
+        await delay(0);
     }
 }
 
