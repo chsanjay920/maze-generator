@@ -1,5 +1,3 @@
-// this for reference 
-
 var box = document.getElementById("box");
 var row = 20, col = 20;
 var start = { x: 0, y: 0 }
@@ -178,7 +176,7 @@ async function solveMazePuzzle() {
             // Update the current cell to chosen cell
             cell = selectednonvisitedcell;
         }
-        // await delay();
+        // await delay(0);
     }
 }
 
